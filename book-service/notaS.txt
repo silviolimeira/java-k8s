@@ -1,0 +1,27 @@
+
+git remote set-url origin git@github.com:silviolimeira/java-k8s.git
+
+mvn package # logging-service project
+
+
+/book-service$    docker build -t sicemal/book-service:4.0 .
+/loggin-service$  docker build -t sicemal/sidecar-service:4.0 .
+
+docker push sicemal/sidecar-service:4.0
+docker push sicemal/book-service:4.0
+
+/logging-service$ kubectl apply -f k8s-deployment.yaml
+/logging-service$ kubectl delete -f k8s-deployment.yaml
+
+/logging-service$ kubectl get deployments
+/logging-service$ kubectl get pods
+/logging-service$ kubectl logs combined-service-cc7697f66-p47h8
+
+/logging-service$ kubectl apply -f k8s-service.yaml
+
+/logging-service$ kubectl get svc
+
+/logging-service$ kubectl port-forward service/combined-service 8080:80
+
+ref: How to check if port is in use on Linux or Unix
+https://www.cyberciti.biz/faq/unix-linux-check-if-port-is-in-use-command/

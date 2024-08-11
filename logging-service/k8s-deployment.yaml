@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: book-service
-          image: book-service:4.0
+          image: sicemal/book-service:4.0
           imagePullPolicy: IfNotPresent
           volumeMounts:
             - name: log-volume
@@ -22,7 +22,7 @@ spec:
           ports:
             - containerPort: 8080
         - name: sidecar-service
-          image: sidecar-service:4.0
+          image: sicemal/sidecar-service:4.0
           imagePullPolicy: IfNotPresent
           volumeMounts:
             - name: log-volume
